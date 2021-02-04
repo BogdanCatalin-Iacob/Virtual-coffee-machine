@@ -11,8 +11,13 @@ public class CoffeeMachine extends JFrame {
 
     private final JFrame frame;
     private final JLabel liquid;
-    private final JPanel liquidPanel;
+//    private final JPanel liquidPanel;
     private final JLabel coffeeMachine;
+    private final JLabel emptyGlass;
+    private final JLabel topGlass;
+    private final JLabel topHalfGlass;
+    private final JLabel bottomHalfGlass;
+    private final JLabel bottomGlass;
     private final ImageIcon icon;
     private final Font font;
 
@@ -52,10 +57,20 @@ public class CoffeeMachine extends JFrame {
         brewConfirmation.setHorizontalAlignment(SwingConstants.CENTER);
         brewConfirmation.setOpaque(true);
 
-        this.liquidPanel = new JPanel();
-        liquidPanel.setBounds(242, 488,80,150);
-        liquidPanel.setBackground(Color.BLACK);
-        liquidPanel.add(liquid);
+        this.emptyGlass = new JLabel();
+
+        this.topGlass = new JLabel();
+
+        this.topHalfGlass = new JLabel();
+
+        this.bottomHalfGlass = new JLabel();
+
+        this.bottomGlass = new JLabel();
+
+//        this.liquidPanel = new JPanel();
+//        liquidPanel.setBounds(242, 488,80,150);
+//        liquidPanel.setBackground(Color.BLACK);
+//        liquidPanel.add(liquid);
 
 //        set buttons coordinates
         int tempX = X;
@@ -74,7 +89,7 @@ public class CoffeeMachine extends JFrame {
             }
         }
 
-//        set labels coordinates
+//        set buttons labels coordinates
         int tempZ = X - 10;
         int tempW = Y - 20;
         for(int i = 0; i < buttonText.length; i++){
@@ -95,7 +110,7 @@ public class CoffeeMachine extends JFrame {
             }
         }
         frame.add(brewConfirmation);
-        frame.add(liquidPanel);
+//        frame.add(liquidPanel);
         frame.add(coffeeMachine);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
@@ -111,11 +126,11 @@ public class CoffeeMachine extends JFrame {
         return new ImageIcon(resizedImage);
     }
 
-//    public void disableButtons(boolean selected){
-//        if(selected){
-//            for(int i = 0; i < buttons.length; i++){
-//                buttons[i].setEnabled(false);
-//            }
-//        }
-//    }
+    public void disableButtons(boolean selected){
+        if(selected){
+            for(int i = 0; i < buttons.length; i++){
+                buttons[i].setEnabled(false);
+            }
+        }
+    }
 }
