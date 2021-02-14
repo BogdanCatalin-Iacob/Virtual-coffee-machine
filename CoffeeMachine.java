@@ -10,7 +10,7 @@ public class CoffeeMachine extends JFrame {
     JLabel brewConfirmation;
 
     private final JFrame frame;
-    private final JLabel liquid;
+     final JLabel liquid;
 //    private final JPanel liquidPanel;
     private final JLabel coffeeMachine;
     private final JLabel emptyGlass;
@@ -109,7 +109,9 @@ public class CoffeeMachine extends JFrame {
                 tempW += 94;
             }
         }
+        //frame settings
         frame.add(brewConfirmation);
+        frame.add(liquid);
 //        frame.add(liquidPanel);
         frame.add(coffeeMachine);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,11 +128,14 @@ public class CoffeeMachine extends JFrame {
         return new ImageIcon(resizedImage);
     }
 
-    public void disableButtons(boolean selected){
+    public void disableButtons(){
         if(selected){
             for(int i = 0; i < buttons.length; i++){
                 buttons[i].setEnabled(false);
             }
         }
+//        for (int i = 0; i < buttons.length;i++){
+//                buttons[i].setEnabled(true);
+//        }
     }
 }

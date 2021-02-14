@@ -4,8 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.Ellipse2D;
-import java.time.LocalTime;
+import java.util.Date;
 
 public class SelectionButtons extends JButton implements ActionListener {
 
@@ -14,8 +13,7 @@ public class SelectionButtons extends JButton implements ActionListener {
     private long startBrew = 0;
 
 
-
-    SelectionButtons(int x, int y, int width, int height, String name,CoffeeMachine coffeeMachine) {
+    SelectionButtons(int x, int y, int width, int height, String name, CoffeeMachine coffeeMachine) {
         super(name);
         this.coffeeMachine = coffeeMachine;
         setBounds(x, y, width, height);
@@ -53,98 +51,72 @@ public class SelectionButtons extends JButton implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        do {
+            String tempText = ((SelectionButtons) e.getSource()).getText();
+            switch (tempText) {
+                case "Espresso":
+                    activeButton("Espresso");
+                    break;
 
-        String tempText = ((SelectionButtons) e.getSource()).getText();
-        switch (tempText) {
-            case "Espresso":
-                if (!coffeeMachine.selected) {
-                    setBackground(Color.GREEN);
-                    setForeground(Color.GREEN);
-                    System.out.println("Pouring Espresso");
-                    coffeeMachine.selected = true;
-                    coffeeMachine.disableButtons(true);
-                    coffeeMachine.brewConfirmation.setText("<html>Preparing your drink: <br>" + tempText + "</html");
-                    startBrew = System.currentTimeMillis();
+                case "Americano":
+                    activeButton("Americano");
                     break;
-                }
-            case "Americano":
-                if (!coffeeMachine.selected) {
-                    setBackground(Color.GREEN);
-                    setForeground(Color.GREEN);
-                    System.out.println("Pouring Americano");
-                    coffeeMachine.selected = true;
-                    coffeeMachine.disableButtons(true);
-                    coffeeMachine.brewConfirmation.setText("<html>Preparing your drink: <br>" + tempText + "</html");
+
+                case "Cappuccino":
+                    activeButton("Cappuccino");
                     break;
-                }
-            case "Cappuccino":
-                if (!coffeeMachine.selected) {
-                    setBackground(Color.GREEN);
-                    setForeground(Color.GREEN);
-                    System.out.println("Pouring Cappuccino");
-                    coffeeMachine.selected = true;
-                    coffeeMachine.disableButtons(true);
-                    coffeeMachine.brewConfirmation.setText("<html>Preparing your drink: <br>" + tempText + "</html");
+
+                case "Latte":
+                    activeButton("Latte");
                     break;
-                }
-            case "Latte":
-                if (!coffeeMachine.selected) {
-                    setBackground(Color.GREEN);
-                    setForeground(Color.GREEN);
-                    System.out.println("Pouring Caffe Latte");
-                    coffeeMachine.selected = true;
-                    coffeeMachine.disableButtons(true);
-                    coffeeMachine.brewConfirmation.setText("<html>Preparing your drink: <br>" + tempText + "</html");
+
+                case "Hot Choco":
+                    activeButton("Hot Choco");
                     break;
-                }
-            case "Hot Choco":
-                if (!coffeeMachine.selected) {
-                    setBackground(Color.GREEN);
-                    setForeground(Color.GREEN);
-                    System.out.println("Pouring Hot Chocolate");
-                    coffeeMachine.selected = true;
-                    coffeeMachine.disableButtons(true);
-                    coffeeMachine.brewConfirmation.setText("<html>Preparing your drink: <br>" + tempText + "</html");
+
+                case "Flat White":
+                    activeButton("Flat White");
                     break;
-                }
-            case "Flat White":
-                if (!coffeeMachine.selected) {
-                    setBackground(Color.GREEN);
-                    setForeground(Color.GREEN);
-                    System.out.println("Pouring Flat White");
-                    coffeeMachine.selected = true;
-                    coffeeMachine.disableButtons(true);
-                    coffeeMachine.brewConfirmation.setText("<html>Preparing your drink: <br>" + tempText + "</html");
+
+                case "Cortado":
+                    activeButton("Cotado");
                     break;
-                }
-            case "Cortado":
-                if (!coffeeMachine.selected) {
-                    setBackground(Color.GREEN);
-                    setForeground(Color.GREEN);
-                    System.out.println("Pouring Cortado");
-                    coffeeMachine.selected = true;
-                    coffeeMachine.disableButtons(true);
-                    coffeeMachine.brewConfirmation.setText("<html>Preparing your drink: <br>" + tempText + "</html");
+
+                case "Hot Water":
+                    activeButton("Hot Water");
                     break;
-                }
-            case "Hot Water":
-                if (!coffeeMachine.selected) {
-                    setBackground(Color.GREEN);
-                    setForeground(Color.GREEN);
-                    System.out.println("Pouring Hot Water");
-                    coffeeMachine.selected = true;
-                    coffeeMachine.disableButtons(true);
-                    coffeeMachine.brewConfirmation.setText("<html>Preparing your drink: <br>" + tempText + "</html");
-                    break;
-                }
-        }
+            }
+        } while (!coffeeMachine.selected);
     }
 
-//    public void brewTime (){
-//        long time = System.currentTimeMillis();
-//        if(coffeeMachine.selected){
-//            long brewDuration = time + 1500;
-//
+    private void activeButton(String brew) {
+        setBackground(Color.GREEN);
+        setForeground(Color.GREEN);
+        coffeeMachine.selected = true;
+//        coffeeMachine.disableButtons();
+        coffeeMachine.brewConfirmation.setText("<html>Preparing your drink: <br>" + brew + "</html");
+        System.out.println("Pouring " + brew);
+
+    }
+
+//    private void pouringBrew() {
+//        long startTime = System.currentTimeMillis();
+//        long elapsedTime = 0;
+//        int y = 0;
+//        System.out.println("Pouring");
+//        while (elapsedTime < 5000) {
+//            elapsedTime = (new Date().getTime() - startTime);
 //        }
+//        reset();
+
+//    }
+
+//    private void reset() {
+////        coffeeMachine.disableButtons(false);
+//        setBackground(Color.BLACK);
+//        setForeground(Color.BLACK);
+//        coffeeMachine.selected = false;
+////        coffeeMachine.disableButtons();
+//        coffeeMachine.brewConfirmation.setText("Select your favorite drink");
 //    }
 }
